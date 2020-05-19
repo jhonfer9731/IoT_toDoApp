@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Todo;
 
-class TodoController extends Controller
+class MisListasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Todo::orderBy('created_at','desc')->paginate(6); 
-        return view('todos.index');
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**

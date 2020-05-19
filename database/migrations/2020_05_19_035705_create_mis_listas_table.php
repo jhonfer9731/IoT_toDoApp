@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTodosTable extends Migration
+class CreateMisListasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTodosTable extends Migration
      */
     public function up()
     {
-        Schema::create('todos', function (Blueprint $table) {
+        Schema::create('mis_listas', function (Blueprint $table) {
             $table->id();
-            $table->text('actividad');
-            $table->integer('user_id');
-            $table->boolean('completada');
+            $table->string('nombre');
+            $table->text('Comentario');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateTodosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('todos');
+        Schema::dropIfExists('mis_listas');
     }
 }
