@@ -5,8 +5,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="/Todo">Inicio</a></li>
-                    <li class="nav-item item-navegacion"><a class="nav-link" href="/Todo">Tus Listas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/todos">Inicio</a></li>
+                    <li class="nav-item item-navegacion"><a class="nav-link" href="todos">Tus Listas</a></li>
                     <li class="nav-item item-navegacion"><a class="nav-link" href="#">Dispositivos</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->

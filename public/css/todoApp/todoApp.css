@@ -88,6 +88,10 @@ body{
     margin-right: 1%;
 }
 
+#t_bienvenido{
+    font-size: 2rem;
+}
+
 .info-iniuser{
     display: flex;
     margin-top: 5px;
@@ -100,7 +104,7 @@ body{
 }
 
 header{
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     animation: 4s ease 0s 1 aparecer;
 }
 
@@ -111,26 +115,56 @@ header,form{
     align-items: center;
 }
 
+.container-2{
+    background-color: #12292e59;
+    padding: 10px;
+}
+
+.card{
+    background: #12292e15 !important;
+    border: none !important;
+}
+
+.card-header{
+    border: none !important;
+    font-size:1.7rem;
+}
+
 form input, form button{
-    padding: 0.5rem;
     background: white;
-    font-size: 2rem;
+    
     border: none;
+}
+
+.todo-button, .todo-input{
+    font-size: 1.5rem !important;   
+    border-radius: 0 !important;
+    border-color: #00000000;
+}
+
+
+.todo-input-group
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 form p{
     font-size: 1.2rem;
     font-weight: 500;
 }
+
 form button{
-    background-color: white;
-    color: #a74d29;
+    background-color: white !important;
+    color: #a74d29 !important;
     cursor: pointer;
+    border: 0px !important;
     transition: all 0.3s ease-in;
 }
 
 form button:hover{
-    color: white;
-    background-color: #a74d29;
+    color: white !important;
+    background-color: #a74d29 !important;
 }
 
 .todo-container{
@@ -193,6 +227,19 @@ form button:hover{
     opacity: 0;
 }
 
+.input-group{
+    margin: 20px 0px;
+}
+
+.input-group-text{
+    background-color: #576364;
+    color: whitesmoke;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    letter-spacing: 0.1rem;
+}
+
 
 select{
     -webkit-appearance: none;
@@ -202,17 +249,23 @@ select{
     border: none;
 }
 
+
 .select{/* Este es el contenedor*/
-    margin: 1rem;
+    margin: 0px 0rem;
     position: relative;
-    overflow: hidden;   
+    overflow: hidden; 
+    width: 60%; 
 }
 
-select{
+.select select{
     color: #ff6f47;
-    width: 10rem;
+    width: 100%;
     cursor: pointer;
-    padding: 1rem;
+    font-weight: 600;
+}
+
+.select select option{
+    font-weight: inherit;
 }
 
 .select::after{
@@ -221,7 +274,8 @@ select{
     background: #ff6f47;
     top: 0;
     right: 0;
-    padding: 1rem;
+    height: 100%;
+    padding: 4% 8%;
     pointer-events: none;
     transition: all 0.3s ease;
 }
@@ -230,6 +284,32 @@ select{
     background: white;
     color: #ff6f47;
 }
+
+.container3{
+    display: flex;
+    justify-items: flex-end;
+    align-items: center;
+    margin-bottom: 0px;
+    padding-bottom: 30px;
+}
+
+#agregar-lista{
+    margin-left: auto;
+    background-color: #d0492d;
+    color: whitesmoke;
+    border: #f52f07;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+#agregar-lista:hover{
+    color: #d0492d;
+    background-color: white;
+    font-weight: 700;
+}
+
+
+/* Parte del footer */
 
 .footer{
     width: 100%;
@@ -255,7 +335,7 @@ select{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 20%;
+    width: 100%;
     margin: 0px auto;
     margin-top: 20px;
     text-align: center;
@@ -264,6 +344,7 @@ select{
 .footer .pag-autor *{
 
     margin-bottom: 20px;
+    width: 100%;
 
 }
 

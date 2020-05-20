@@ -4,7 +4,7 @@ const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
 const cerrarSesion = document.querySelector('#cerrar-sesion');
-
+let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 // event listener area
 
 
@@ -13,7 +13,6 @@ todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click',filterTodo);
 document.addEventListener('DOMContentLoaded',loadTodos);
 //cerrarSesion.addEventListener('click', cerrar_sesion);
-
 
 
 
@@ -46,38 +45,60 @@ function cerrar_sesion(event)
 
 function addTodo(event)
 {
+    const cuerpo = {
+        actividad: todoInput.value,
+        completada: false,
+        user_id: 0
+    }
+    var response = null;
     event.preventDefault();
+    fetch('/api/todos',{
+        headers:{
+                "Content-Type":"application/json"
+        },
+        method: 'post',
+        body: JSON.stringify(cuerpo),
+        }
+    ).then(response => response.json()).then(
+        res => {
+            addArchTodo(event,res);
+        }
+    ).catch(err => console.log(err));
 
-    // Todo DIV
+}
 
-    const todoDiv = document.createElement("div");
-    todoDiv.classList.add('todo');
-    //create li
-    const todoNuevo = document.createElement('li');
-    todoNuevo.innerHTML = todoInput.value;
-    todoNuevo.classList.add('todo-item');
-    todoDiv.appendChild(todoNuevo);
-    //save to localstorage
-    saveTodos(todoInput.value);
-    //check mark button
-    const completedBtn = document.createElement('button');
-    completedBtn.innerHTML = '<i class="fas fa-check"> </i>';
-    completedBtn.classList.add('complete-btn');
-    todoDiv.appendChild(completedBtn);
+function addArchTodo(event,response){
 
-    //check trash button
-    const removedBtn = document.createElement('button');
-    removedBtn.innerHTML = '<i class="fas fa-trash"> </i>';
-    removedBtn.classList.add('removed-btn');
-    todoDiv.appendChild(removedBtn);
+        // Todo DIV
 
-    //Append to list
-    todoList.appendChild(todoDiv);
-
-    //clear input value
-
-    todoInput.value = "";
-
+        const todoDiv = document.createElement("div");
+        todoDiv.classList.add('todo');
+        todoDiv.id = ('id_'+response.id+'-user_'+response.data.user_id);
+        //create li
+        const todoNuevo = document.createElement('li');
+        todoNuevo.innerHTML = todoInput.value;
+        todoNuevo.classList.add('todo-item');
+        todoDiv.appendChild(todoNuevo);
+        //save to localstorage
+        //saveTodos(todoInput.value);
+        //check mark button
+        const completedBtn = document.createElement('button');
+        completedBtn.innerHTML = '<i class="fas fa-check"> </i>';
+        completedBtn.classList.add('complete-btn');
+        todoDiv.appendChild(completedBtn);
+    
+        //check trash button
+        const removedBtn = document.createElement('button');
+        removedBtn.innerHTML = '<i class="fas fa-trash"> </i>';
+        removedBtn.classList.add('removed-btn');
+        todoDiv.appendChild(removedBtn);
+    
+        //Append to list
+        todoList.appendChild(todoDiv);
+    
+        //clear input value
+    
+        todoInput.value = "";
 }
 
 
@@ -86,7 +107,8 @@ function deleteCheck(event) //Se ejecuta cada vez que se hace click sobre un ele
     //delete element
     const item = event.target;
     if ( item.classList[0] === 'removed-btn'){
-        const todo = item.parentElement;
+        const todo = item.parentElement; // aqui obtengo el todo con id = id_#_user_#
+        deleteFormDB(todo.id);
         todo.classList.add('fall') // se usa para crear una animacion
         removeLocalTodos(todo);
         todo.addEventListener('transitionend', ()=>{ // cuando acaba la transicion se elimina
@@ -99,11 +121,63 @@ function deleteCheck(event) //Se ejecuta cada vez que se hace click sobre un ele
     {
         const todo= item.parentElement;
         todo.classList.toggle("completed");
+        completadoDB(todo,todo.classList)
+
     }
     //console.log(item.classList[0]); // me muestra informacion sobre el elemento fue 
 }
 
+function completadoDB(todo, class_status)
+{
+    //console.log(class_status);
+    const completada =  class_status.contains('completed');
+    const infoTodo = extraerInfoTodo(todo.id);
+    const body ={
+        actividad : todo.getElementsByClassName('todo-item')[0].innerText,
+        completada : completada,
+        user_id: infoTodo.user_id
+    }
+    //console.log(body);
+    const uri = '/api/todos/'+infoTodo.id;
+    fetch(uri,{
+        headers:{
+            "Content-Type":"application/json"
+        },
+        method: 'put',
+        body: JSON.stringify(body)
+    }).then(response => response.json()).then(
+        res => console.log(res)
+    ).catch(err => console.log("algo paso mal"));
+}
 
+
+
+function deleteFormDB(todo_id)
+{
+    const infoTodo = extraerInfoTodo(todo_id);
+    const uri = '/api/todos/'+infoTodo.id;
+    console.log(uri);
+    fetch(uri,{
+        headers:{
+            "Content-Type":"application/json"
+        },
+        method: 'delete',
+        body: JSON.stringify(infoTodo)
+    }).then(response => response.json()).then(
+        res => console.log(res)
+    ).catch(err => console.log("algo paso mal"));
+    
+}
+
+function extraerInfoTodo(todo_id)
+{
+    const id_content = todo_id.split('-');
+    const infoTodo = {
+        id: parseInt(id_content[0].split('id_')[1]),
+        user_id: parseInt(id_content[1].split('user_')[1])
+    }
+    return infoTodo;
+}
 
 
 function filterTodo(event)

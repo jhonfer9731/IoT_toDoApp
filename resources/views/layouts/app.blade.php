@@ -17,7 +17,7 @@
      <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
  
      <!-- Scripts -->
-     <script src="{{ asset('js/app.js') }}" defer></script>
+     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
  
      <!-- Style -->
      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
