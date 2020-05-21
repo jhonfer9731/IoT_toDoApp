@@ -8,6 +8,7 @@
             }*/?>
         <!-- </div> -->
         <h1 id = "t_bienvenido"> Bienvenido </h1>
+        <h3> id: {{Auth::user()->id}}</h3>
     </div>
     <div class="container-fluid">
         <header>

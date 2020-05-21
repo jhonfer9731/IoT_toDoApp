@@ -16,7 +16,7 @@ class TodoController extends Controller
      */
 
     public function __construct(){
-        $this->middleware('auth', ["except" =>['index', 'show', 'store']]);
+    $this->middleware('auth'/*, ["except" =>['index', 'show', 'store']]*/);
     }
 
 
@@ -54,7 +54,7 @@ class TodoController extends Controller
         if($validator->passes()){
             $todo = new Todo();
             $todo->actividad = $data["actividad"];
-            $todo->user_id = 0;
+            $todo->user_id = auth()->user()->id;
             $todo->completada = $data["completada"];
             $todo->save();
             return response()->json($data,200);

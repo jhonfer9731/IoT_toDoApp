@@ -48,7 +48,6 @@ function addTodo(event)
     const cuerpo = {
         actividad: todoInput.value,
         completada: false,
-        user_id: 0
     }
     var response = null;
     event.preventDefault();

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Todo;
 use Validator;
+use Auth;
 
 class TodoController extends Controller
 {
@@ -50,7 +51,7 @@ class TodoController extends Controller
                 $todo = new Todo();
                 $todo->actividad = $data["actividad"];
                 $todo->completada = $data["completada"];
-                $todo->user_id = $data["user_id"];
+                $todo->user_id = 0;
                 $todo->save();
                 return response()->json(["data" => $data, "id" => $todo->id],201);
             }else{

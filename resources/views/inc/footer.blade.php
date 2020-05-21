@@ -1,11 +1,11 @@
 
 <footer class = "footer">
     <ul class= "list-footer">
-        <li> <a href="#">Inicio</a> </li>
+        <li> <a href="/">Inicio</a> </li>
         <li class = "barra-sep"> | </li>
-        <li> Tus Listas </li>
+        <li> <a href="/"> Tus Listas </a></li>
         <li class = "barra-sep"> | </li>
-        <li> <a href="#">Dispositivos</a> </li>
+        <li> <a href="/">Dispositivos</a> </li>
     </ul>
     <div class = "pag-autor">
         <p> Desarrollado por: <span> Jhon Benavides </span> </p>
