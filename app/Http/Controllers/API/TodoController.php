@@ -8,6 +8,8 @@ use App\Todo;
 use Validator;
 use Auth;
 
+
+
 class TodoController extends Controller
 {
     /**
@@ -15,7 +17,6 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
      /* Me Muestra todos los ToDo disponibles*/
 
     public function index(Request $request)
