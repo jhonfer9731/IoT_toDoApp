@@ -9,7 +9,6 @@ use Validator;
 use Auth;
 
 
-
 class TodoController extends Controller
 {
     /**
@@ -18,6 +17,9 @@ class TodoController extends Controller
      * @return \Illuminate\Http\Response
      */
      /* Me Muestra todos los ToDo disponibles*/
+    public function __construct(){
+    $this->middleware('jwt', ['except' => ['login']]);
+    }
 
     public function index(Request $request)
     {
@@ -44,7 +46,7 @@ class TodoController extends Controller
             $rules = [
                 'actividad' => 'required',
                 'completada' => 'boolean|required',
-                'user_id' => 'integer|nullable'
+                'user_id' => 'integer|required'
             ];
             $validator = Validator::make($data,$rules);
             if($validator->passes()){
@@ -52,7 +54,7 @@ class TodoController extends Controller
                 $todo = new Todo();
                 $todo->actividad = $data["actividad"];
                 $todo->completada = $data["completada"];
-                $todo->user_id = 0;
+                $todo->user_id = $data["user_id"];
                 $todo->save();
                 return response()->json(["data" => $data, "id" => $todo->id],201);
             }else{

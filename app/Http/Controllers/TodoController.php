@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Todo;
+use App\User;
 use Validator;
 
 class TodoController extends Controller
@@ -19,10 +20,17 @@ class TodoController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $todos = Todo::orderBy('created_at','asc')->get();
+        if($usuarioLoggedId = auth()->user()->id)
+        {
+            $user = User::find($usuarioLoggedId);
+        }
+        $todos = $user->todos()->orderBy('created_at','asc')->get();
+        //$todos = Todo::orderBy('created_at','asc')->get();
         //return $todos;
+        //$cookie = $request->cookie('token');
+        //return $cookie;
         return view('todos.index')->with('todos',$todos);
     }
 

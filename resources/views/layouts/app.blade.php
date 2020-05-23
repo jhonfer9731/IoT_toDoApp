@@ -17,8 +17,7 @@
      <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
  
      <!-- Scripts -->
-     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
- 
+     <script src="{{asset('js/auth/getTk.js')}}" ></script>
      <!-- Style -->
      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
@@ -38,6 +37,7 @@
         @yield('content2')
     </div>
     @yield('javaScripts')
+    
 </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
