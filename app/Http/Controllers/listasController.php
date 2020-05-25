@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\MisLista;   
 use Illuminate\Http\Request;
 
-class MisListasController extends Controller
+class listasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +13,7 @@ class MisListasController extends Controller
      */
     public function index()
     {
-        $userLoggedId = auth()->user()->id;
-        $listas = User::find($userLoggedId)->mislistas;
         
-        return view('listas.index')->with('listas',$listas);
     }
 
     /**
@@ -28,7 +23,7 @@ class MisListasController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -39,19 +34,7 @@ class MisListasController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'nombre' => 'string||required',
-            'comentario' => 'nullable'
-        ]);
-        $userLoggedId = auth()->user()->id;
-
-        $lista = new MisLista();
-        $lista->nombre = $request->nombre;
-        $lista->Comentario = $request->comentario;
-        $lista->user_id = $userLoggedId;
-        $lista->save();
-        return redirect('/listas');       
-
+        //
     }
 
     /**
@@ -62,12 +45,7 @@ class MisListasController extends Controller
      */
     public function show($id)
     {
-        
-        if(!$lista = MisLista::find($id)){
-            return redirect()->back()->withErrors("no existe esa lista");
-        }
-        
-        return view('listas.listaShow')->with('lista',$lista);
+        //
     }
 
     /**

@@ -1,5 +1,6 @@
 @extends('layouts.todoApp')
 @section('content2')
+    <main id="main">
     <div class="msj-bienvenida">
          <!-- <div class="info-iniuser"> -->
             <?php /*if(isset($_SESSION["mensaje"])){
@@ -8,13 +9,13 @@
             }*/?>
         <!-- </div> -->
         <h1 id = "t_bienvenido"> Bienvenido </h1>
-        <h3> id: {{Auth::user()->id}}</h3>
+        <h3> {{Auth::user()->name}}</h3>
     </div>
     <div class="container-fluid">
         <header>
             <h1>Lista de tareas</h1>
         </header>
-        <form class="card text-white bg-dark w-95">
+        <form class="card text-white bg-dark w-95 card-form">
             <div class="container-2">
                 <p class="card-header">Inserta una tarea:&nbsp&nbsp</p>
                 <div class="card-body card-expand-lg">
@@ -61,6 +62,31 @@
         <div class="container container3">
             <button type="button" class="btn btn-primary" id="agregar-lista">Agregar a una lista </button>
         </div>
+    </main>
+    <div class="container col-sm-3 create-listas-form" id="crear-lista">
+        <div class="p-3 custom-blue" style="border-radius: 25px;">
+            <form action="/listas" method="POST">
+                <h2 class="form-group card-title text-center">Nueva lista</h2>
+                <div class="form-group justify-center">
+                    <div class="nombre-group">
+                        <label class="col-form-label mr-3">Nombre</label>
+                        <input type="text" id="nombreNuevaLista" class="form-control" name="nombre">
+                    </div>
+                    <div class="nombre-group">
+                        <label class="col-form-label mr-3">Comentario</label>
+                        <textarea placeholder="Ingrese un corto comentario..." class="form-control" name="comentario" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <div class="">
+                        <button type="submit" class="btn btn-primary" id="enviar-lista">Crear</button>
+                        <button type="button" class="btn btn-primary" id="cancelar-envio"> Regresar </button>
+                    </div>
+                </div>
+                @csrf
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('javaScripts')

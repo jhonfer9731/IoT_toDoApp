@@ -49,6 +49,8 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    //relaciones entre tablas
+
     public function todos(){
         
         return $this->hasMany('App\Todo');

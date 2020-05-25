@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -6,7 +6,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" href="/todos">Inicio</a></li>
-                    <li class="nav-item item-navegacion"><a class="nav-link" href="todos">Tus Listas</a></li>
+                    <li class="nav-item item-navegacion"><a class="nav-link" href="/listas">Tus Listas</a></li>
                     <li class="nav-item item-navegacion"><a class="nav-link" href="#">Dispositivos</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->

@@ -5,17 +5,36 @@ const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
 const cerrarSesion = document.querySelector('#cerrar-sesion');
 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+const agregarListaBtn = document.querySelector('#agregar-lista');
+const crearListaFrm = document.querySelector('#crear-lista');
+const mainSection = document.querySelector('#main');
+const cancelarEnvio = document.querySelector('#cancelar-envio');
 // event listener area
 
-
+agregarListaBtn.addEventListener('click',mostrarCrearLista);
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
 document.addEventListener('DOMContentLoaded', loadTodos);
+cancelarEnvio.addEventListener('click', mostrarCrearLista);
 //cerrarSesion.addEventListener('click', cerrar_sesion);
 
-
+crearListaFrm.style.display = 'none';
+crearListaFrm.style.top = "-500px";
 //functions area
+
+
+function mostrarCrearLista(){
+    if(!crearListaFrm.classList.contains('mostrar-crear-lista')){
+        mainSection.style.opacity = 0.2;
+        mainSection.style.zIndex = 2;
+        crearListaFrm.classList.toggle("mostrar-crear-lista");
+    }else{
+        mainSection.style.opacity = 1;
+        mainSection.style.zIndex = 1;
+        crearListaFrm.classList.toggle("mostrar-crear-lista");
+    }
+}
 
 const cerrarS = {
     finish: true,
@@ -27,6 +46,7 @@ let user = "anonimo";
 
 window.onload = () => { // Se obtiene toda la informacion del usuario registrado
     getUserInfo();
+    
 }
 //Get user Information
 
@@ -43,23 +63,6 @@ function getUserInfo() {
     }).then(res => res.json()).then(response => { console.log(response); user = response }).catch(err => console.log(err));
 }
 
-// Get cookies
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
 
 
 function cerrar_sesion(event) // Hay que cambiar esta funcion

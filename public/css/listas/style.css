@@ -1,0 +1,27 @@
+.img_gradient{
+    min-height: 800px;
+}
+
+.container{
+    margin: 120px auto;
+}
+
+.title-listas{
+    margin: 30px auto;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.todo-list{
+    margin: 5px auto;
+}
+
+.lista-nombre{
+    font-size: 2rem;
+}
+
+
+
+.lista-comentario{
+    font-size: 1.2rem;
+}

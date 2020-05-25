@@ -22,10 +22,11 @@ class TodoController extends Controller
 
     public function index(Request $request)
     {
-        if($usuarioLoggedId = auth()->user()->id)
+        if(!$usuarioLoggedId = auth()->user()->id)
         {
-            $user = User::find($usuarioLoggedId);
+            return redirect('/');  
         }
+        $user = User::find($usuarioLoggedId);
         $todos = $user->todos()->orderBy('created_at','asc')->get();
         //$todos = Todo::orderBy('created_at','asc')->get();
         //return $todos;

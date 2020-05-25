@@ -23,6 +23,8 @@ Route::get('/','TodoController@index');
 
 Route::resource('todos','TodoController');
 
+Route::resource('listas','MisListasController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

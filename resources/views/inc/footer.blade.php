@@ -3,7 +3,7 @@
     <ul class= "list-footer">
         <li> <a href="/">Inicio</a> </li>
         <li class = "barra-sep"> | </li>
-        <li> <a href="/"> Tus Listas </a></li>
+        <li> <a href="/listas"> Tus Listas </a></li>
         <li class = "barra-sep"> | </li>
         <li> <a href="/">Dispositivos</a> </li>
     </ul>

@@ -108,7 +108,7 @@ header{
     animation: 4s ease 0s 1 aparecer;
 }
 
-header,form{
+header,.card-form{
     min-height: 20vh;
     display: flex;
     justify-content: center;
@@ -132,7 +132,6 @@ header,form{
 
 form input, form button{
     background: white;
-    
     border: none;
 }
 
@@ -293,21 +292,44 @@ select{
     padding-bottom: 30px;
 }
 
-#agregar-lista{
+#agregar-lista, #enviar-lista, #cancelar-envio{
     margin-left: auto;
-    background-color: #d0492d;
-    color: whitesmoke;
-    border: #f52f07;
-    font-size: 1.3rem;
-    font-weight: 600;
+    background-color: #d0492d !important;
+    color: whitesmoke !important;
+    border: #f52f07 !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
 }
 
-#agregar-lista:hover{
-    color: #d0492d;
-    background-color: white;
-    font-weight: 700;
+#agregar-lista:hover, #enviar-lista:hover, #cancelar-envio:hover{
+    color: #d0492d !important;
+    background-color: white !important;
+    font-weight: 700 !important;
 }
 
+.create-listas-form{
+    padding: 0px 5px;
+}
+
+.nombre-group{
+    width: fit-content;
+    margin: 0px auto;
+}
+
+#crear-lista{
+    animation:  2s ease 0s 1 aparecer;
+    z-index: 2;
+}
+
+.mostrar-crear-lista {
+    position: relative;
+    z-index: 1 !important;
+    display: block !important;  
+}
+
+.custom-blue{
+    background-color: #304663;
+}
 
 /* Parte del footer */
 
