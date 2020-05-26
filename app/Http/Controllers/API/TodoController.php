@@ -46,7 +46,8 @@ class TodoController extends Controller
             $rules = [
                 'actividad' => 'required',
                 'completada' => 'boolean|required',
-                'user_id' => 'integer|required'
+                'user_id' => 'integer|required',
+                'mis_lista_id' => 'integer|nullable'
             ];
             $validator = Validator::make($data,$rules);
             if($validator->passes()){
@@ -55,6 +56,11 @@ class TodoController extends Controller
                 $todo->actividad = $data["actividad"];
                 $todo->completada = $data["completada"];
                 $todo->user_id = $data["user_id"];
+                if(!isset($data["mis_lista_id"])){
+                    $todo->mis_lista_id = 0;
+                }else{
+                    $todo->mis_lista_id = $data["mis_lista_id"];
+                }
                 $todo->save();
                 return response()->json(["data" => $data, "id" => $todo->id],201);
             }else{

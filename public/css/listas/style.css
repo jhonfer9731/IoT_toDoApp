@@ -25,3 +25,14 @@
 .lista-comentario{
     font-size: 1.2rem;
 }
+
+#eliminar-lista{
+    background-color: #c70909 !important;
+    color: whitesmoke !important;
+}
+
+.mostrar-crear-lista {
+    position: relative;
+    z-index: 1 !important;
+    display: block !important;  
+}

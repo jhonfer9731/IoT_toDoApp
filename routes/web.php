@@ -25,6 +25,8 @@ Route::resource('todos','TodoController');
 
 Route::resource('listas','MisListasController');
 
+Route::resource('dispositivos', 'DispositivosController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

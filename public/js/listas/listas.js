@@ -5,37 +5,15 @@ const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
 const cerrarSesion = document.querySelector('#cerrar-sesion');
 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-const agregarListaBtn = document.querySelector('#agregar-lista');
-const crearListaFrm = document.querySelector('#crear-lista');
-const mainSection = document.querySelector('#main');
-const cancelarEnvio = document.querySelector('#cancelar-envio');
 // event listener area
-
-agregarListaBtn.addEventListener('click',mostrarCrearLista);
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
-//document.addEventListener('DOMContentLoaded', loadTodos);
-cancelarEnvio.addEventListener('click', mostrarCrearLista);
-//cerrarSesion.addEventListener('click', cerrar_sesion);
 
-console.log(crearListaFrm);
-crearListaFrm.style.display = 'none';
-crearListaFrm.style.top = "-500px";
+
+
 //functions area
 
-
-function mostrarCrearLista(){
-    if(!crearListaFrm.classList.contains('mostrar-crear-lista')){
-        mainSection.style.opacity = 0.2;
-        mainSection.style.zIndex = 2;
-        crearListaFrm.classList.toggle("mostrar-crear-lista");
-    }else{
-        mainSection.style.opacity = 1;
-        mainSection.style.zIndex = 1;
-        crearListaFrm.classList.toggle("mostrar-crear-lista");
-    }
-}
 
 const cerrarS = {
     finish: true,
@@ -49,6 +27,8 @@ window.onload = () => { // Se obtiene toda la informacion del usuario registrado
     getUserInfo();
     
 }
+
+
 //Get user Information
 
 function getUserInfo() {
@@ -66,29 +46,15 @@ function getUserInfo() {
 
 
 
-function cerrar_sesion(event) // Hay que cambiar esta funcion
-{
-    alert("Hasta Pronto");
-    const url = "/login/cerrarsesion.php";
-    fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(cerrarS),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(response => response.json()).then(
-        res => {
-            console.log(res.location);
-            document.location.href = res.location;
-        }
-    );
-}
 
 function addTodo(event) {
+    // solo funciona el listas.show
+    //console.log(window.location.pathname.split('/')[2])
     const cuerpo = {
         actividad: todoInput.value,
         completada: false,
-        user_id: user.id
+        user_id: user.id,
+        mis_lista_id : window.location.pathname.split('/')[2]
 
     }
     event.preventDefault();
@@ -119,9 +85,6 @@ function addArchTodo(event, response) {
     todoNuevo.innerHTML = todoInput.value;
     todoNuevo.classList.add('todo-item');
     todoDiv.appendChild(todoNuevo);
-    //save to localstorage
-    //saveTodos(todoInput.value);
-    //check mark button
     const completedBtn = document.createElement('button');
     completedBtn.innerHTML = '<i class="fas fa-check"> </i>';
     completedBtn.classList.add('complete-btn');
@@ -164,7 +127,7 @@ function deleteCheck(event) //Se ejecuta cada vez que se hace click sobre un ele
         completadoDB(todo, todo.classList)
 
     }
-    //console.log(item.classList[0]); // me muestra informacion sobre el elemento fue 
+ 
 }
 
 function completadoDB(todo, class_status) {
@@ -218,6 +181,9 @@ function extraerInfoTodo(todo_id) {
     return infoTodo;
 }
 
+
+
+
 // filtra los todos entre incompletos, completados o todos
 function filterTodo(event) {
     const todos = todoList.childNodes; // lista con todos los todos generados
@@ -254,81 +220,3 @@ function filterTodo(event) {
     });
     console.log(todos);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function saveTodos(todo) {
-    // check if there is a list of todos
-    if (todo == ' ' || todo == "") return;
-    let todos;
-    if (localStorage.getItem('todos') === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
-    todos.push(todo);
-    localStorage.setItem('todos', JSON.stringify(todos));
-}*/
-/*
-function loadTodos() {
-    // check if there is a list of todos
-    let todos;
-    if (localStorage.getItem('todos') === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
-
-    todos.forEach((todo) => {
-        const todoDiv = document.createElement("div");
-        todoDiv.classList.add('todo');
-        //create li
-        const todoNuevo = document.createElement('li');
-        todoNuevo.innerHTML = todo;
-        todoNuevo.classList.add('todo-item');
-        todoDiv.appendChild(todoNuevo);
-        //save to localstorage
-        saveTodos(todoInput.value);
-        //check mark button
-        const completedBtn = document.createElement('button');
-        completedBtn.innerHTML = '<i class="fas fa-check"> </i>';
-        completedBtn.classList.add('complete-btn');
-        todoDiv.appendChild(completedBtn);
-
-        //check trash button
-        const removedBtn = document.createElement('button');
-        removedBtn.innerHTML = '<i class="fas fa-trash"> </i>';
-        removedBtn.classList.add('removed-btn');
-        todoDiv.appendChild(removedBtn);
-
-        //Append to list
-        todoList.appendChild(todoDiv);
-    })
-
-}*/
-/*
-function removeLocalTodos(todo) {
-
-    let todos;
-    if (localStorage.getItem('todos') === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
-
-    const todoDeleted = todo.children[0].innerText;
-
-    todos.splice(todos.indexOf(todoDeleted), 1);
-    localStorage.setItem('todos', JSON.stringify(todos));
-
-}*/

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class MisListasController extends Controller
 {
+    
+    
+    public function __construct(){
+    $this->middleware('jwt' /*,['except' => ['login']]*/);
+        }
+    
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +56,7 @@ class MisListasController extends Controller
         $lista->Comentario = $request->comentario;
         $lista->user_id = $userLoggedId;
         $lista->save();
-        return redirect('/listas');       
+        return redirect('/listas/'.$lista->id);       
 
     }
 
@@ -90,7 +96,19 @@ class MisListasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'nombre' => 'string||required',
+            'comentario' => 'nullable'
+        ]);
+        $userLoggedId = auth()->user()->id;
+        $lista = MisLista::find($id);
+        if($userLoggedId !== $lista->user["id"]){
+            return redirect('/posts')->with('error', 'Pagina no Autorizada');
+        }
+        $lista->nombre = $request->nombre;
+        $lista->Comentario = $request->comentario;
+        $lista->save();
+        return redirect('/listas')->with("success","Lista: ".$request->nombre." fue editada");
     }
 
     /**
@@ -101,6 +119,11 @@ class MisListasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lista = MisLista::find($id);
+        if(auth()->user()->id !== $lista->user["id"]){
+            return redirect('/posts')->with('error', 'Pagina no Autorizada');
+        }
+        $lista->delete();
+        return redirect('/listas')->with("success","Lista Eliminada");
     }
 }

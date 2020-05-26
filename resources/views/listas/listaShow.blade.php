@@ -52,3 +52,9 @@
         </ul>
     </div>
 @endsection
+
+@section('javaScripts')
+
+    <script type="text/javascript" src="{{asset("js/listas/listas.js")}}"></script>
+
+@endsection

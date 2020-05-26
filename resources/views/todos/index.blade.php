@@ -43,18 +43,20 @@
             <ul class="todo-list">
                 @if (count($todos) > 0)
                     @foreach ($todos as $todo)
-                    @if ($todo->completada == true)
-                        <div class="todo completed" id="{{ 'id_'.$todo->id."-user_".$todo->user_id }}">
-                    @else
-                        <div class="todo" id="{{ 'id_'.$todo->id."-user_".$todo->user_id }}">
-                    @endif
-                            <li class="todo-item">
-                                <!-- Aqui va el valor del todo -->
-                                {{$todo->actividad}}
-                            </li>
-                            <button class="complete-btn"><i class="fas fa-check"> </i></button>
-                            <button class="removed-btn"><i class="fas fa-trash"> </i></button>
-                        </div>
+                        @if ($todo->mis_lista_id == 0)
+                            @if ($todo->completada == true)
+                            <div class="todo completed" id="{{ 'id_'.$todo->id."-user_".$todo->user_id }}">
+                        @else
+                            <div class="todo" id="{{ 'id_'.$todo->id."-user_".$todo->user_id }}">
+                        @endif
+                                <li class="todo-item">
+                                    <!-- Aqui va el valor del todo -->
+                                    {{$todo->actividad}}
+                                </li>
+                                <button class="complete-btn"><i class="fas fa-check"> </i></button>
+                                <button class="removed-btn"><i class="fas fa-trash"> </i></button>
+                            </div>
+                        @endif
                     @endforeach
                 @endif
             </ul>

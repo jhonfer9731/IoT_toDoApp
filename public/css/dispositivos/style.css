@@ -1,0 +1,80 @@
+#t_bienvenido{
+    font-size: 2rem;
+}
+
+.container-iot{
+    border: 1px solid whitesmoke;
+    border-radius: 2%;
+    width: 98%;
+    margin: 5px auto;
+}
+
+.container-iot #dispositivos{
+    margin: 20px 20px;
+    min-height: 6rem;
+    font-size: 2.4rem;
+}
+
+.iots-list{
+    margin: 30px 4%;
+    list-style-type: circle;
+    
+}
+
+.iots-item{ 
+    padding-left: 10px;
+    width: 90%;
+    padding-bottom: 20px;
+    align-items: center;
+}
+.iot-title{
+    width: 98%;
+    margin: 20px auto;
+    font-size: 1.8rem;
+}
+.iots-title{
+
+    float: left;
+    width: fit-content;
+    margin-right: 20px;
+}
+.iots-btn{
+    float: left;
+    width: fit-content;
+}
+
+.iots-btn *{
+    font-size: 1.4rem;
+    margin-right: 20px;
+    transition: 0.2s ease;
+}
+
+.iots-monitor{
+    float:left;
+    margin-left: 20px;
+    width: fit-content;
+}
+
+.sensor-list{
+    margin: 10px 4%;
+    list-style-type: circle;
+}
+
+.sensor-item{ 
+    padding: 0px 5px;
+    width: 90%;
+    padding-bottom: 20px;
+    margin: 5px auto;    
+}
+.sensor-title{
+    font-size: 1.75rem;
+}
+
+.canva-container{
+    width: 100%;
+    margin: 20px auto;
+}
+
+.clear{
+    clear: both;
+}

@@ -140,8 +140,6 @@ form input, form button{
     border-radius: 0 !important;
     border-color: #00000000;
 }
-
-
 .todo-input-group
 {
     display: flex;
@@ -312,7 +310,7 @@ select{
 }
 
 .nombre-group{
-    width: fit-content;
+    width: 90%;
     margin: 0px auto;
 }
 

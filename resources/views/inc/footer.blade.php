@@ -5,7 +5,7 @@
         <li class = "barra-sep"> | </li>
         <li> <a href="/listas"> Tus Listas </a></li>
         <li class = "barra-sep"> | </li>
-        <li> <a href="/">Dispositivos</a> </li>
+        <li> <a href="/dispositivos">Dispositivos</a> </li>
     </ul>
     <div class = "pag-autor">
         <p> Desarrollado por: <span> Jhon Benavides </span> </p>

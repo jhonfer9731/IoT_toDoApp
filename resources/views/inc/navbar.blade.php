@@ -7,7 +7,7 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" href="/todos">Inicio</a></li>
                     <li class="nav-item item-navegacion"><a class="nav-link" href="/listas">Tus Listas</a></li>
-                    <li class="nav-item item-navegacion"><a class="nav-link" href="#">Dispositivos</a></li>
+                    <li class="nav-item item-navegacion"><a class="nav-link" href="/dispositivos">Dispositivos</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
