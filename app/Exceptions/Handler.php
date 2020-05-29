@@ -53,12 +53,12 @@ class Handler extends ExceptionHandler
     {
         if($exception instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException)
         {
-            return response()->json(['error' => 'token_invalid'], 400);
+            return response()->json(['error' => 'token es invalido'], 400);
         }elseif($exception instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-            return response()->json(['error' => 'token is Expired'], 400);
+            return response()->json(['error' => 'token ha expirado'], 400);
         }elseif($exception instanceof \Tymon\JWTAuth\Exceptions\JWTException)
         {
-            return response()->json(['error' => 'There is a problem with your token'], 400);
+            return response()->json(['error' => 'Su sesion ha caducado, por favor inicie sesion nuevamente'], 400);
         }else{
             return parent::render($request, $exception);
         }

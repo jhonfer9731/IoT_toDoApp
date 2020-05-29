@@ -35,33 +35,43 @@ function mostrarCrearLista(event){
         editarListaFrm.querySelector('#comentarioLista').value = comentario.innerText;
         editForm.action =nombre.parentElement.href;
         editarListaFrm.classList.toggle("mostrar-crear-lista");
+        editarListaFrm.style.position = "absolute";
+        editarListaFrm.style.top  = ((event.clientY/2).toString())+"px";
+    
+
     }else{
         mainSection.style.opacity = 1;
         mainSection.style.zIndex = 1;
         editarListaFrm.classList.toggle("mostrar-crear-lista");
     }
 }
-/*
-window.onload = function(){
-    const agregarListaBtn = document.querySelector('.boton-editar');
-    console.log(agregarListaBtn);
-    agregarListaBtn.addEventListener('click',mostrarCrearLista);
-    cancelarEnvio.addEventListener('click', mostrarCrearLista);
+
+let user = "anonimo";
+
+window.onload = () => { // Se obtiene toda la informacion del usuario registrado
+    getUserInfo();
+    
+}
 
 
-    editarListaFrm.style.display = 'none';
-    editarListaFrm.style.top = "-500px";
+//Get user Information
 
-    //functions area
-    function mostrarCrearLista(){
-        if(!editarListaFrm.classList.contains('mostrar-crear-lista')){
-            mainSection.style.opacity = 0.2;
-            mainSection.style.zIndex = 2;
-            editarListaFrm.classList.toggle("mostrar-crear-lista");
-        }else{
-            mainSection.style.opacity = 1;
-            mainSection.style.zIndex = 1;
-            editarListaFrm.classList.toggle("mostrar-crear-lista");
-        }
-    }
-}*/
+function getUserInfo() {
+    const url = "/api/todos/me";
+    fetch(url, {
+        headers: {
+            "content-type": "application/json"
+        },
+        method: "post",
+        body: JSON.stringify({
+            todo: "/index"
+        })
+    }).then(res => res.json()).then(response => { 
+        
+        console.log(response);
+        if(response.error !== undefined) redireccionarLogout(response.error)
+        user = response;
+
+    
+    }).catch(err => console.log(err));
+}

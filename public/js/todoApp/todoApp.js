@@ -30,6 +30,8 @@ function mostrarCrearLista(){
         mainSection.style.opacity = 0.2;
         mainSection.style.zIndex = 2;
         crearListaFrm.classList.toggle("mostrar-crear-lista");
+        crearListaFrm.style.position = "absolute";
+        crearListaFrm.style.top  = ((event.clientY/2).toString())+"px";
     }else{
         mainSection.style.opacity = 1;
         mainSection.style.zIndex = 1;
@@ -61,7 +63,11 @@ function getUserInfo() {
         body: JSON.stringify({
             todo: "/index"
         })
-    }).then(res => res.json()).then(response => { console.log(response); user = response }).catch(err => console.log(err));
+    }).then(res => res.json()).then(response => {
+            console.log(response);
+            if(response.error !== undefined) redireccionarLogout(response.error) 
+            user = response;
+        }).catch(err => console.log(err));
 }
 
 

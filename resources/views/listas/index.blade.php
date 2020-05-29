@@ -72,7 +72,7 @@
             </div>
         </div>
     </main>
-    <div class="container col-sm-3 create-listas-form" id="crear-lista">
+    <div class="container create-listas-form" id="crear-lista">
         <div class="p-3 custom-blue" style="border-radius: 25px;">
             <form action="/listas/" method="POST" id="editarListasForm">
                 {{ method_field('PUT') }} <!--convierte el metodo POST a DELETE -->

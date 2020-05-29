@@ -41,10 +41,15 @@ function getUserInfo() {
         body: JSON.stringify({
             todo: "/index"
         })
-    }).then(res => res.json()).then(response => { console.log(response); user = response }).catch(err => console.log(err));
+    }).then(res => res.json()).then(response => { 
+        
+        console.log(response);
+        if(response.error !== undefined) redireccionarLogout(response.error)
+        user = response;
+
+    
+    }).catch(err => console.log(err));
 }
-
-
 
 
 function addTodo(event) {

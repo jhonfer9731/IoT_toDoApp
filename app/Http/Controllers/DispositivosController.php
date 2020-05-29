@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 class DispositivosController extends Controller
 {
+    
+
+    /*Constructor que verifica la autenticacion*/
+    public function __construct(){
+    $this->middleware('auth'/*, ["except" =>['index', 'show', 'store']]*/);
+    }
+    
+    
     /**
      * Display a listing of the resource.
      *
