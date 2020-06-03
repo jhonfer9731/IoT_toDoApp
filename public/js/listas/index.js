@@ -5,12 +5,12 @@ const cancelarEnvio = document.querySelector('#cancelar-envio');
 const listGroup = document.querySelector('.list-group');
 const editForm = document.querySelector('#editarListasForm');
 
-
+editarListaFrm.style.display = 'none';
+editarListaFrm.style.top = "-300px";
 
 listGroup.addEventListener('click', verficarBtnEditar);
 cancelarEnvio.addEventListener('click', mostrarCrearLista);
-editarListaFrm.style.display = 'none';
-editarListaFrm.style.top = "-300px";
+
 
 function verficarBtnEditar (event){
 

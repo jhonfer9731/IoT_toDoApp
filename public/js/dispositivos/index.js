@@ -55,7 +55,7 @@ var chart_element = new Chart(canvas, {
                         return value + '°C';
                     },
                     fontSize: 14,
-                    min: 17,
+                    min: 0,
                     max: 33
                 }
             }],
